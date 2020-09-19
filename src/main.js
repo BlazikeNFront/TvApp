@@ -55,7 +55,7 @@ class tvApp{
           arr.push('...')
           const shortShowSummary = arr.join(" ");
         
-            else {image = show.image.medium } 
+           
         
         const divCard = createDOMElement('div','card',);
         
