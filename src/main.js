@@ -42,11 +42,27 @@ class tvApp{
         }
          
       createShowCard = (show) => {
-        const divCard = createDOMElement('div','card');
-        const img = createDOMElement('img','card-img-top',null, show.image.medium);
+        let image;
+        let showSummary;
+        if(show.image === null){
+          image = 'https://picsum.photos/220/309'
+        }
+          else {image = show.image.medium }    // check if image exist if not give random img from lorem picsum(need more specific placcehoder???)
+       if(show.summary === null){
+            imashowSummaryge = 'There is no summary for that show yet'
+          }
+          const arr = Array.from(show.summary.split(" ").splice(0,30)); //shortens of summaries
+          arr.push('...')
+          const shortShowSummary = arr.join(" ");
+        
+            else {image = show.image.medium } 
+        
+        const divCard = createDOMElement('div','card',);
+        
+        const img = createDOMElement('img','card-img-top',null, image);
         const div = createDOMElement('div','card-body');
         const h5 = createDOMElement('h5','card-title',show.name);
-        const p = createDOMElement('p','card-text',show.summary);
+        const p = createDOMElement('p','card-text',shortShowSummary);
         const button = createDOMElement('button',',btn btn-primary','Show more...');
 
         
@@ -60,6 +76,8 @@ class tvApp{
       }
 
       renderShowList = (shows) => {
+        this.domElements.showWrapper.innerHTML = '';
+
       for (let {show}of shows){
         this.createShowCard(show)
       }
